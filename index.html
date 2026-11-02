@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chez Bolingo — Restaurant, Brazzaville</title>
+<meta name="description" content="Chez Bolingo, restaurant sur la corniche de Brazzaville avec vue sur le fleuve Congo. Cuisine généreuse, grillades et spécialités congolaises, tous les jours de 12h à 23h.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#F4EEE6;
+    --surface:#FFFFFF;
+    --text:#2A211B;
+    --text-soft:#6B5D4F;
+    --accent:#A6764E;
+    --accent-light:#C49A74;
+    --border:rgba(42,33,27,.14);
+    --border-soft:rgba(42,33,27,.08);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Hanken Grotesk",system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.55;
+  }
+  h1,h2,h3{
+    font-family:"Instrument Serif",Georgia,serif;
+    font-weight:400;
+    margin:0;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:760px;margin:0 auto;padding-inline:20px;}
+
+  nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding-block:22px;border-bottom:1px solid var(--border-soft);
+  }
+  .brand{font-family:"Instrument Serif",Georgia,serif;font-size:22px;}
+  .navlinks{display:flex;gap:22px;font-size:14px;color:var(--text-soft);}
+  .navlinks a{text-decoration:none;}
+  .navlinks a:hover{color:var(--accent);}
+
+  .hero{padding-block:56px 44px;}
+  .eyebrow{
+    font-size:12.5px;text-transform:uppercase;letter-spacing:.14em;
+    color:var(--accent);margin-bottom:14px;display:block;
+  }
+  .hero h1{font-size:clamp(38px,7vw,54px);margin-bottom:14px;}
+  .hero p.lead{font-size:17px;color:var(--text-soft);max-width:44ch;margin-bottom:28px;}
+  .btn-row{display:flex;flex-wrap:wrap;gap:12px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:3px;
+    font-size:14.5px;text-decoration:none;border:1px solid transparent;cursor:pointer;font-family:inherit;
+  }
+  .btn-primary{background:var(--accent);color:#fff;}
+  .btn-primary:hover{background:var(--accent-light);}
+  .btn-outline{border-color:var(--border);color:var(--text);background:transparent;}
+  .btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+
+  section{padding-block:40px;border-top:1px solid var(--border-soft);}
+  .section-head{margin-bottom:26px;}
+  .section-head .eyebrow{margin-bottom:8px;}
+  .section-head h2{font-size:28px;}
+
+  .infos{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:22px 28px;}
+  .infos dt{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-soft);margin-bottom:5px;}
+  .infos dd{margin:0;font-size:15.5px;}
+
+  .cuisine p{max-width:62ch;color:var(--text-soft);font-size:15.5px;}
+
+  .menu-teaser{display:flex;flex-direction:column;gap:20px;}
+  .menu-highlights{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;}
+  .dish-card{
+    border:1px solid var(--border-soft);border-radius:4px;padding:16px;background:var(--surface);
+  }
+  .dish-card .name{font-size:15.5px;margin-bottom:4px;}
+  .dish-card .price{font-size:13.5px;color:var(--accent);font-variant-numeric:tabular-nums;}
+
+  .qr-block{
+    display:flex;align-items:center;gap:20px;flex-wrap:wrap;
+    border:1px solid var(--border-soft);border-radius:4px;padding:20px;background:var(--surface);
+  }
+  .qr-block img{width:110px;height:110px;flex-shrink:0;}
+  .qr-block .text{font-size:14px;color:var(--text-soft);max-width:36ch;}
+  .qr-block .text strong{color:var(--text);}
+
+  .contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;}
+  @media (max-width:600px){.contact-grid{grid-template-columns:1fr;}}
+  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
+  .field label{font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-soft);}
+  .field input,.field textarea{
+    font-family:inherit;font-size:15px;padding:10px 12px;border:1px solid var(--border);
+    border-radius:3px;background:var(--surface);color:var(--text);
+  }
+  .field textarea{resize:vertical;min-height:80px;}
+  .confirm{margin-top:12px;font-size:13.5px;color:var(--accent);display:none;}
+  .confirm.show{display:block;}
+  .contact-side dt{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-soft);margin-bottom:5px;}
+  .contact-side dd{margin:0 0 20px 0;font-size:15.5px;}
+
+  footer{
+    border-top:1px solid var(--border-soft);padding-block:28px 40px;font-size:13px;color:var(--text-soft);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav>
+    <div class="brand">Chez Bolingo</div>
+    <div class="navlinks">
+      <a href="bolingo-menu.html">Menu</a>
+      <a href="#infos">Infos</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <section class="hero" style="border-top:none;">
+    <span class="eyebrow">Restaurant · Brazzaville</span>
+    <h1>Cuisine généreuse,<br>vue sur le fleuve.</h1>
+    <p class="lead">Chez Bolingo vous accueille tous les jours sur la corniche, pour un repas simple et savoureux face au fleuve Congo.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="https://wa.me/242068669995?text=Bonjour%2C%20je%20souhaite%20réserver%20une%20table%20chez%20Bolingo" target="_blank" rel="noopener">Réserver sur WhatsApp</a>
+      <a class="btn btn-outline" href="bolingo-menu.html">Voir le menu</a>
+    </div>
+  </section>
+
+  <section id="infos">
+    <div class="section-head">
+      <span class="eyebrow">Pratique</span>
+      <h2>Infos essentielles</h2>
+    </div>
+    <dl class="infos">
+      <div><dt>Adresse</dt><dd>Corniche de Brazzaville</dd></div>
+      <div><dt>Horaires</dt><dd>Tous les jours · 12h – 23h</dd></div>
+      <div><dt>Téléphone</dt><dd>06 866 9995</dd></div>
+      <div><dt>Spécialités</dt><dd>Poissons du fleuve, grillades, cuisine congolaise</dd></div>
+    </dl>
+  </section>
+
+  <section class="cuisine">
+    <div class="section-head">
+      <span class="eyebrow">La maison</span>
+      <h2>Une table simple, une vue rare</h2>
+    </div>
+    <p>À Chez Bolingo, l'assiette reste généreuse et accessible — comptez entre 4 000 et 6 000 FCFA par plat — pendant que la terrasse profite d'un des rares points de vue directs sur le fleuve Congo à Brazzaville. L'endroit où Brazza se retrouve, midi et soir.</p>
+  </section>
+
+  <section id="menu-teaser">
+    <div class="section-head">
+      <span class="eyebrow">Carte</span>
+      <h2>Quelques incontournables</h2>
+    </div>
+    <div class="menu-teaser">
+      <div class="menu-highlights">
+        <div class="dish-card"><div class="name">Capitaine braisé</div><div class="price">6 000 F</div></div>
+        <div class="dish-card"><div class="name">Brochettes</div><div class="price">4 000 F</div></div>
+        <div class="dish-card"><div class="name">Cocktail maison</div><div class="price">3 000 F</div></div>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="bolingo-menu.html">Voir le menu complet</a>
+      </div>
+      <div class="qr-block">
+        <img src="bolingo-qr.png" alt="QR code vers le menu Chez Bolingo">
+        <div class="text"><strong>Sur place ?</strong> Scannez ce code avec votre téléphone pour consulter la carte directement à table.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-head">
+      <span class="eyebrow">Nous écrire</span>
+      <h2>Contact</h2>
+    </div>
+    <div class="contact-grid">
+      <form id="contactForm">
+        <div class="field">
+          <label for="f-name">Nom</label>
+          <input id="f-name" type="text" required>
+        </div>
+        <div class="field">
+          <label for="f-phone">Téléphone / WhatsApp</label>
+          <input id="f-phone" type="tel" required>
+        </div>
+        <div class="field">
+          <label for="f-msg">Message</label>
+          <textarea id="f-msg" required placeholder="Date, heure, nombre de personnes…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+        <p class="confirm" id="confirmMsg">Merci — nous revenons vers vous rapidement.</p>
+      </form>
+      <dl class="contact-side">
+        <dt>Adresse</dt><dd>Corniche de Brazzaville</dd>
+        <dt>Téléphone</dt><dd>06 866 9995</dd>
+        <dt>Horaires</dt><dd>Tous les jours · 12h – 23h</dd>
+      </dl>
+    </div>
+  </section>
+
+  <footer>
+    <span>© Chez Bolingo — Brazzaville</span>
+    <span>Site conçu par l'Atelier KPM</span>
+  </footer>
+</div>
+
+<script>
+  var form = document.getElementById('contactForm');
+  var confirmMsg = document.getElementById('confirmMsg');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    confirmMsg.classList.add('show');
+    var whatsappText = encodeURIComponent(
+      'Bonjour, je suis ' + document.getElementById('f-name').value +
+      ' (' + document.getElementById('f-phone').value + '). ' +
+      document.getElementById('f-msg').value
+    );
+    form.dataset.whatsapp = 'https://wa.me/242068669995?text=' + whatsappText;
+  });
+</script>
+</body>
+</html>
