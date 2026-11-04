@@ -3,309 +3,434 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chez Bolingo — Restaurant, Brazzaville</title>
-<meta name="description" content="Chez Bolingo, restaurant sur la corniche de Brazzaville avec vue sur le fleuve Congo. Cuisine généreuse, grillades et spécialités congolaises, tous les jours de 12h à 23h.">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<meta name="description" content="Chez Bolingo, restaurant avec vue sur le fleuve Congo. Cuisine congolaise, terrasse, cocktails. Avenue Simon Kimbangou, Brazzaville.">
+<title>Chez Bolingo — Restaurant & Terrasse · Brazzaville</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#F4EEE6;
-    --surface:#FFFFFF;
-    --text:#2A211B;
-    --text-soft:#6B5D4F;
-    --accent:#A6764E;
-    --accent-light:#C49A74;
-    --border:rgba(42,33,27,.14);
-    --border-soft:rgba(42,33,27,.08);
-  }
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--text);
-    font-family:"Hanken Grotesk",system-ui,sans-serif;
-    font-size:16px;
-    line-height:1.55;
-  }
-  h1,h2,h3{
-    font-family:"Instrument Serif",Georgia,serif;
-    font-weight:400;
-    margin:0;
-    text-wrap:balance;
-  }
-  a{color:inherit;}
-  img{max-width:100%;display:block;}
-  .wrap{max-width:860px;margin:0 auto;padding-inline:20px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --noir:#0C0C0A;
+  --rouge:#8B1A1A;
+  --rouge-mid:#A52020;
+  --or:#C9952A;
+  --or-light:#E0B84A;
+  --creme:#F7F2EA;
+  --creme-dark:#EAE2D6;
+  --blanc:#FDFAF6;
+  --texte:#1A1208;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--blanc);color:var(--texte);overflow-x:hidden;}
 
-  nav{
-    display:flex;align-items:center;justify-content:space-between;
-    padding-block:22px;max-width:860px;margin:0 auto;padding-inline:20px;
-  }
-  .brand{font-family:"Instrument Serif",Georgia,serif;font-size:22px;}
-  .navlinks{display:flex;gap:22px;font-size:14px;color:var(--text-soft);}
-  .navlinks a{text-decoration:none;}
-  .navlinks a:hover{color:var(--accent);}
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:200;padding:1.1rem 2.5rem;display:flex;justify-content:space-between;align-items:center;transition:background 0.4s,padding 0.3s;}
+nav.scrolled{background:rgba(12,12,10,0.95);padding:0.8rem 2.5rem;}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:1.35rem;color:#fff;letter-spacing:0.02em;}
+.nav-logo em{font-style:italic;color:var(--or-light);}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
+.nav-links a{font-size:0.78rem;font-weight:400;color:rgba(255,255,255,0.75);text-decoration:none;letter-spacing:0.06em;transition:color 0.2s;}
+.nav-links a:hover{color:var(--or-light);}
+.nav-reserver{background:var(--or);color:var(--noir)!important;padding:0.5rem 1.1rem;border-radius:2px;font-weight:500!important;}
+.nav-reserver:hover{background:var(--or-light)!important;}
 
-  /* hero */
-  .hero{
-    position:relative;
-    min-height:min(560px,88vh);
-    display:flex;
-    align-items:flex-end;
-    background:
-      linear-gradient(180deg, rgba(20,15,10,.15) 0%, rgba(20,15,10,.35) 55%, rgba(20,15,10,.78) 100%),
-      url('https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
-    color:#F4EEE6;
-  }
-  .hero-inner{max-width:860px;margin:0 auto;padding:0 20px 48px;width:100%;}
-  .badge{
-    display:inline-flex;align-items:center;gap:7px;
-    background:rgba(244,238,230,.14);
-    border:1px solid rgba(244,238,230,.35);
-    backdrop-filter:blur(2px);
-    border-radius:30px;
-    padding:6px 14px;
-    font-size:13px;
-    margin-bottom:18px;
-  }
-  .badge .stars{color:#E8C27A;letter-spacing:1px;}
-  .eyebrow{
-    font-size:12.5px;text-transform:uppercase;letter-spacing:.14em;
-    color:var(--claylt,#E3C7A6);margin-bottom:14px;display:block;
-  }
-  .hero h1{font-size:clamp(38px,6.4vw,56px);margin-bottom:14px;color:#fff;}
-  .hero p.lead{font-size:17px;color:#EDE4D8;max-width:46ch;margin-bottom:28px;}
-  .btn-row{display:flex;flex-wrap:wrap;gap:12px;}
-  .btn{
-    display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:3px;
-    font-size:14.5px;text-decoration:none;border:1px solid transparent;cursor:pointer;font-family:inherit;
-  }
-  .btn-primary{background:var(--accent);color:#fff;}
-  .btn-primary:hover{background:var(--accent-light);}
-  .btn-outline{border-color:rgba(244,238,230,.5);color:#fff;background:rgba(244,238,230,.08);}
-  .btn-outline:hover{border-color:#fff;}
-  .btn-outline.dark{border-color:var(--border);color:var(--text);background:transparent;}
-  .btn-outline.dark:hover{border-color:var(--accent);color:var(--accent);}
+/* HERO */
+.hero{position:relative;height:100vh;min-height:580px;overflow:hidden;display:flex;align-items:flex-end;}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,12,10,0.85) 0%,rgba(12,12,10,0.3) 60%,rgba(12,12,10,0.1) 100%);}
+.hero-content{position:relative;z-index:2;padding:0 2.5rem 4.5rem;width:100%;}
+.hero-avis{display:inline-flex;align-items:center;gap:8px;margin-bottom:1.25rem;background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.2);padding:5px 14px;border-radius:20px;}
+.hero-stars{color:var(--or-light);font-size:0.75rem;letter-spacing:1px;}
+.hero-avis-text{font-size:0.72rem;color:rgba(255,255,255,0.7);}
+.hero-initial{font-family:'DM Serif Display',serif;font-size:clamp(5rem,12vw,9rem);color:rgba(201,149,42,0.12);line-height:1;position:absolute;right:2.5rem;bottom:3rem;}
+h1.hero-title{font-family:'DM Serif Display',serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:400;line-height:1.05;color:#fff;margin-bottom:0.75rem;}
+h1.hero-title em{font-style:italic;color:var(--or-light);}
+.hero-sub{font-size:0.88rem;font-weight:300;color:rgba(255,255,255,0.65);letter-spacing:0.08em;margin-bottom:2rem;}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-or{display:inline-block;background:var(--or);color:var(--noir);padding:0.8rem 1.8rem;font-size:0.82rem;font-weight:500;text-decoration:none;border-radius:2px;transition:background 0.2s;}
+.btn-or:hover{background:var(--or-light);}
+.btn-outline{display:inline-block;border:1px solid rgba(255,255,255,0.4);color:rgba(255,255,255,0.8);padding:0.8rem 1.8rem;font-size:0.82rem;text-decoration:none;border-radius:2px;transition:all 0.2s;}
+.btn-outline:hover{border-color:#fff;color:#fff;}
 
-  section{padding-block:48px;border-top:1px solid var(--border-soft);}
-  .section-head{margin-bottom:28px;}
-  .section-head .eyebrow{color:var(--accent);margin-bottom:8px;}
-  .section-head h2{font-size:30px;}
+/* BANDE INFOS */
+.bande{background:var(--rouge);padding:1rem 2.5rem;display:flex;gap:2.5rem;align-items:center;flex-wrap:wrap;}
+.bande-item{font-size:0.78rem;color:#fff;display:flex;align-items:center;gap:8px;opacity:0.9;}
+.bande-sep{color:rgba(255,255,255,0.3);font-size:1rem;}
 
-  .infos{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:22px 28px;}
-  .infos dt{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-soft);margin-bottom:5px;}
-  .infos dd{margin:0;font-size:15.5px;}
+/* SECTION GÉNÉRIQUE */
+.section{padding:5rem 2.5rem;}
+.section-label{font-size:0.7rem;letter-spacing:0.18em;color:var(--or);margin-bottom:0.9rem;font-weight:500;}
+.section-title{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:400;line-height:1.1;color:var(--rouge);margin-bottom:1.25rem;}
+.section-title em{font-style:italic;color:var(--texte);}
+.section-body{font-size:0.9rem;font-weight:300;line-height:1.85;color:#4A3828;max-width:52ch;}
 
-  /* feature cards (cuisine / terrasse / ambiance) */
-  .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
-  @media (max-width:680px){.features{grid-template-columns:1fr;}}
-  .feature-card{border:1px solid var(--border-soft);border-radius:6px;overflow:hidden;background:var(--surface);}
-  .feature-card .ph{aspect-ratio:4/3;overflow:hidden;}
-  .feature-card .ph img{width:100%;height:100%;object-fit:cover;}
-  .feature-card .body{padding:16px 18px 20px;}
-  .feature-card h3{font-size:19px;margin-bottom:6px;}
-  .feature-card p{font-size:13.5px;color:var(--text-soft);margin:0;}
+/* EXPÉRIENCES */
+.exps{background:var(--creme);padding:5rem 2.5rem;}
+.exps-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5px;background:var(--creme-dark);margin-top:3rem;}
+.exp-card{background:var(--creme);padding:2.5rem 2rem;position:relative;overflow:hidden;}
+.exp-img{width:100%;height:200px;object-fit:cover;border-radius:4px;margin-bottom:1.25rem;filter:brightness(0.92);}
+.exp-tag{font-size:0.68rem;letter-spacing:0.15em;color:var(--or);margin-bottom:0.5rem;font-weight:500;}
+.exp-title{font-family:'DM Serif Display',serif;font-size:1.5rem;font-weight:400;color:var(--rouge);margin-bottom:0.5rem;}
+.exp-title em{font-style:italic;}
+.exp-desc{font-size:0.83rem;font-weight:300;color:#5A4030;line-height:1.7;margin-bottom:1rem;}
+.exp-link{font-size:0.78rem;color:var(--or);text-decoration:none;border-bottom:1px solid var(--or);padding-bottom:1px;}
 
-  /* gallery */
-  .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
-  @media (max-width:600px){.gallery{grid-template-columns:repeat(2,1fr);}}
-  .gallery a{display:block;aspect-ratio:1/1;overflow:hidden;border-radius:4px;}
-  .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease;}
-  .gallery a:hover img{transform:scale(1.05);}
+/* MENU */
+.menu-section{background:var(--blanc);}
+.menu-header{text-align:center;padding:4rem 2.5rem 2rem;}
+.menu-header .section-title{color:var(--rouge);}
+.menu-note{font-size:0.78rem;color:#8A7060;margin-top:0.5rem;}
+.plat-nom{font-size:0.9rem;font-weight:400;color:var(--texte);}
+.plat-desc{font-size:0.75rem;color:#8A7060;margin-top:2px;line-height:1.4;}
+.plat-prix{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--or);flex-shrink:0;}
 
-  .menu-teaser{display:flex;flex-direction:column;gap:20px;}
-  .menu-highlights{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;}
-  .dish-card{
-    border:1px solid var(--border-soft);border-radius:4px;padding:16px;background:var(--surface);
-  }
-  .dish-card .name{font-size:15.5px;margin-bottom:4px;}
-  .dish-card .price{font-size:13.5px;color:var(--accent);font-variant-numeric:tabular-nums;}
+/* APERÇU MENU + ACCÈS CARTE DIGITALE */
+.menu-highlights{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--creme-dark);max-width:900px;margin:2.5rem auto 0;}
+.menu-highlight-card{background:var(--blanc);padding:1.9rem 1.5rem;text-align:center;}
+.menu-highlight-card .plat-nom{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--rouge);margin-bottom:6px;}
+.menu-highlight-card .plat-desc{font-size:0.78rem;margin-bottom:10px;}
+.menu-highlight-card .plat-prix{font-size:1.1rem;}
+.menu-cta{display:flex;align-items:center;gap:1.5rem;max-width:720px;margin:2.5rem auto 4rem;padding:1.75rem 2rem;background:var(--noir);border-radius:10px;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;}
+.menu-cta:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(0,0,0,0.3);}
+.menu-cta img{width:84px;height:84px;border-radius:6px;flex-shrink:0;background:#fff;padding:4px;}
+.menu-cta-text{flex:1;}
+.menu-cta-title{font-family:'DM Serif Display',serif;font-size:1.25rem;color:var(--or-light);margin-bottom:4px;}
+.menu-cta-text p{font-size:0.82rem;color:rgba(255,255,255,0.65);line-height:1.6;}
 
-  .qr-block{
-    display:flex;align-items:center;gap:20px;flex-wrap:wrap;
-    border:1px solid var(--border-soft);border-radius:4px;padding:20px;background:var(--surface);
-  }
-  .qr-block img{width:110px;height:110px;flex-shrink:0;}
-  .qr-block .text{font-size:14px;color:var(--text-soft);max-width:36ch;}
-  .qr-block .text strong{color:var(--text);}
+/* GALERIE */
+.galerie{background:var(--noir);padding:5rem 2.5rem;}
+.galerie .section-label{color:var(--or);}
+.galerie .section-title{color:#fff;}
+.galerie .section-title em{color:var(--or-light);}
+.galerie-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:auto auto;gap:6px;margin-top:2.5rem;}
+.galerie-img{width:100%;object-fit:cover;display:block;}
+.galerie-img-tall{grid-row:span 2;height:100%;}
+.galerie-img-wide{grid-column:span 2;}
+.galerie-img-sq{height:220px;}
 
-  .contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;}
-  @media (max-width:600px){.contact-grid{grid-template-columns:1fr;}}
-  .field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;}
-  .field label{font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-soft);}
-  .field input,.field textarea{
-    font-family:inherit;font-size:15px;padding:10px 12px;border:1px solid var(--border);
-    border-radius:3px;background:var(--surface);color:var(--text);
-  }
-  .field textarea{resize:vertical;min-height:80px;}
-  .confirm{margin-top:12px;font-size:13.5px;color:var(--accent);display:none;}
-  .confirm.show{display:block;}
-  .contact-side dt{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-soft);margin-bottom:5px;}
-  .contact-side dd{margin:0 0 20px 0;font-size:15.5px;}
+/* LOUNGE */
+.lounge{background:var(--rouge);padding:5rem 2.5rem;}
+.lounge-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.lounge .section-label{color:rgba(255,255,255,0.5);}
+.lounge .section-title{color:#fff;}
+.lounge .section-title em{color:var(--or-light);}
+.lounge-body{font-size:0.9rem;font-weight:300;color:rgba(255,255,255,0.7);line-height:1.85;margin-bottom:2rem;}
+.lounge-feats{display:flex;flex-direction:column;gap:1rem;}
+.lounge-feat{display:flex;gap:1rem;align-items:flex-start;}
+.lounge-feat-icon{width:36px;height:36px;background:rgba(255,255,255,0.08);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.lounge-feat-text{font-size:0.85rem;color:rgba(255,255,255,0.75);line-height:1.6;}
+.lounge-feat-title{font-weight:500;color:#fff;margin-bottom:2px;}
+.lounge-img{width:100%;height:380px;object-fit:cover;border-radius:4px;filter:brightness(0.85);}
 
-  footer{
-    border-top:1px solid var(--border-soft);padding-block:28px 40px;font-size:13px;color:var(--text-soft);
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
-    max-width:860px;margin:0 auto;padding-inline:20px;
-  }
-  .social{display:flex;gap:14px;}
-  .social a{text-decoration:none;color:var(--text-soft);}
-  .social a:hover{color:var(--accent);}
+/* RÉSERVATION */
+.reservation{background:var(--creme);padding:5rem 2.5rem;}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.res-infos{display:flex;flex-direction:column;gap:1.5rem;margin-top:1.5rem;}
+.res-info-item{display:flex;gap:1rem;align-items:flex-start;}
+.res-info-icon{width:40px;height:40px;background:var(--rouge);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.res-info-label{font-size:0.7rem;letter-spacing:0.1em;color:var(--or);margin-bottom:3px;font-weight:500;}
+.res-info-val{font-size:0.88rem;color:#4A3828;line-height:1.6;}
+.res-info-val a{color:var(--rouge);text-decoration:none;}
+.res-form{background:#fff;border-radius:4px;padding:2rem;border:0.5px solid var(--creme-dark);}
+.res-form-title{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--rouge);margin-bottom:0.25rem;}
+.res-form-sub{font-size:0.78rem;color:#8A7060;margin-bottom:1.5rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:0.75rem;}
+.form-row.full{grid-template-columns:1fr;}
+.form-group{display:flex;flex-direction:column;gap:4px;}
+.form-group label{font-size:0.72rem;letter-spacing:0.08em;color:#8A7060;font-weight:500;}
+.form-group input,.form-group select{padding:0.65rem 0.85rem;border:0.5px solid var(--creme-dark);border-radius:2px;font-size:0.85rem;color:var(--texte);background:#fff;font-family:'DM Sans',sans-serif;transition:border-color 0.2s;}
+.form-group input:focus,.form-group select:focus{outline:none;border-color:var(--or);}
+.btn-submit{width:100%;background:var(--rouge);color:#fff;border:none;padding:0.9rem;font-size:0.85rem;font-weight:500;cursor:pointer;border-radius:2px;font-family:'DM Sans',sans-serif;margin-top:0.5rem;transition:background 0.2s;}
+.btn-submit:hover{background:var(--rouge-mid);}
+.form-confirm{display:none;text-align:center;padding:1rem;background:#f0faf4;border-radius:2px;font-size:0.85rem;color:#1a7a3a;margin-top:0.75rem;}
+
+/* FOOTER */
+footer{background:var(--noir);padding:3rem 2.5rem 2rem;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:2rem;margin-bottom:2rem;}
+.footer-brand{font-family:'DM Serif Display',serif;font-size:1.4rem;color:#fff;margin-bottom:0.75rem;}
+.footer-brand em{font-style:italic;color:var(--or-light);}
+.footer-desc{font-size:0.8rem;color:rgba(255,255,255,0.4);line-height:1.7;max-width:32ch;}
+.footer-col-title{font-size:0.7rem;letter-spacing:0.12em;color:var(--or);margin-bottom:0.75rem;font-weight:500;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.footer-links a{font-size:0.8rem;color:rgba(255,255,255,0.5);text-decoration:none;}
+.footer-links a:hover{color:var(--or-light);}
+.footer-social{display:flex;gap:0.75rem;margin-top:1.25rem;}
+.social-btn{width:36px;height:36px;border-radius:50%;border:0.5px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:0.75rem;color:rgba(255,255,255,0.5);text-decoration:none;transition:all 0.2s;}
+.social-btn:hover{border-color:var(--or-light);color:var(--or-light);}
+.footer-bottom{border-top:0.5px solid rgba(255,255,255,0.08);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;}
+.footer-copy{font-size:0.72rem;color:rgba(255,255,255,0.25);}
+.footer-kpm{font-size:0.72rem;color:rgba(255,255,255,0.25);}
+.footer-kpm a{color:var(--or);text-decoration:none;}
+
+/* WHATSAPP FLOTTANT */
+.wa-btn{position:fixed;bottom:1.75rem;right:1.75rem;z-index:300;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 16px rgba(37,211,102,0.35);transition:transform 0.2s;}
+.wa-btn:hover{transform:scale(1.08);}
+.wa-icon{width:26px;height:26px;fill:#fff;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:1rem 1.25rem;}
+  nav.scrolled{padding:0.7rem 1.25rem;}
+  .nav-links{gap:1rem;}
+  .nav-links li:not(:last-child){display:none;}
+  .hero-content{padding:0 1.25rem 3.5rem;}
+  .bande{gap:1rem;padding:0.9rem 1.25rem;}
+  .bande-sep{display:none;}
+  .section,.exps,.galerie,.lounge,.reservation{padding:3.5rem 1.25rem;}
+  .exps-grid{grid-template-columns:1fr;}
+  .menu-highlights{grid-template-columns:1fr;}
+  .menu-cta{flex-direction:column;text-align:center;margin:2rem 1.25rem 3rem;padding:1.5rem;}
+  .galerie-grid{grid-template-columns:1fr 1fr;}
+  .galerie-img-tall{grid-row:span 1;}
+  .galerie-img-wide{grid-column:span 2;}
+  .galerie-img-sq{height:160px;}
+  .lounge-grid,.res-grid,.footer-grid{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .footer-bottom{flex-direction:column;align-items:flex-start;}
+  .hero-initial{display:none;}
+}
 </style>
 </head>
 <body>
-  <nav>
-    <div class="brand">Chez Bolingo</div>
-    <div class="navlinks">
-      <a href="bolingo-menu.html">Menu</a>
-      <a href="#infos">Infos</a>
-      <a href="#contact">Contact</a>
+
+<nav id="nav">
+  <div class="nav-logo">Chez <em>Bolingo</em></div>
+  <ul class="nav-links">
+    <li><a href="#experiences">L'établissement</a></li>
+    <li><a href="bolingo-menu.html">Menu</a></li>
+    <li><a href="#lounge">Terrasse</a></li>
+    <li><a href="#reservation" class="nav-reserver">Réserver</a></li>
+  </ul>
+</nav>
+
+<!-- HERO avec vidéo -->
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline poster="https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&w=1400">
+    <!-- Remplace src par ta vidéo compressée : bolingo-hero.mp4 -->
+    <source src="bolingo-hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-avis">
+      <span class="hero-stars">★★★★☆</span>
+      <span class="hero-avis-text">4,0 / 5 · 102 avis Google</span>
     </div>
-  </nav>
-
-  <section class="hero" style="border-top:none;padding-block:0;">
-    <div class="hero-inner">
-      <div class="badge"><span class="stars">★★★★</span><span>4.0 · 102 avis Google</span></div>
-      <span class="eyebrow">Restaurant · Corniche de Brazzaville</span>
-      <h1>Cuisine généreuse,<br>vue sur le fleuve.</h1>
-      <p class="lead">Chez Bolingo vous accueille tous les jours sur la corniche, pour un repas simple et savoureux face au fleuve Congo.</p>
-      <div class="btn-row">
-        <a class="btn btn-primary" href="https://wa.me/242068669995?text=Bonjour%2C%20je%20souhaite%20réserver%20une%20table%20chez%20Bolingo" target="_blank" rel="noopener">Réserver sur WhatsApp</a>
-        <a class="btn btn-outline" href="bolingo-menu.html">Voir le menu</a>
-      </div>
+    <div class="hero-initial">B</div>
+    <h1 class="hero-title">L'endroit où<br>Brazza <em>se retrouve</em></h1>
+    <p class="hero-sub">Restaurant · Terrasse · Cocktails · Vue fleuve Congo</p>
+    <div class="hero-btns">
+      <a href="#reservation" class="btn-or">Réserver une table</a>
+      <a href="bolingo-menu.html" class="btn-outline">Voir le menu</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <div class="wrap">
-    <section id="infos">
-      <div class="section-head">
-        <span class="eyebrow">Pratique</span>
-        <h2>Infos essentielles</h2>
-      </div>
-      <dl class="infos">
-        <div><dt>Adresse</dt><dd>Corniche de Brazzaville</dd></div>
-        <div><dt>Horaires</dt><dd>Tous les jours · 12h – 23h</dd></div>
-        <div><dt>Téléphone</dt><dd>06 866 9995</dd></div>
-        <div><dt>Spécialités</dt><dd>Poissons du fleuve, grillades, cuisine congolaise</dd></div>
-      </dl>
-    </section>
+<!-- BANDE INFOS -->
+<div class="bande">
+  <div class="bande-item">📍 Av. Simon Kimbangou, Brazzaville</div>
+  <span class="bande-sep">|</span>
+  <div class="bande-item">📞 06 866 9995</div>
+  <span class="bande-sep">|</span>
+  <div class="bande-item">🕐 Tous les jours · 12h – 23h</div>
+  <span class="bande-sep">|</span>
+  <div class="bande-item">🍽 Cuisine & cocktails</div>
+</div>
 
-    <section class="cuisine">
-      <div class="section-head">
-        <span class="eyebrow">La maison</span>
-        <h2>L'endroit où Brazza se retrouve</h2>
-      </div>
-      <div class="features">
-        <div class="feature-card">
-          <div class="ph"><img src="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=700" alt="La cuisine de Chez Bolingo" loading="lazy"></div>
-          <div class="body">
-            <h3>Cuisine généreuse</h3>
-            <p>Poissons du fleuve, grillades et plats congolais, entre 4 000 et 6 000 FCFA.</p>
-          </div>
-        </div>
-        <div class="feature-card">
-          <div class="ph"><img src="https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Terrasse de Chez Bolingo, vue sur le fleuve" loading="lazy"></div>
-          <div class="body">
-            <h3>Terrasse fluviale</h3>
-            <p>Un des rares points de vue directs sur le fleuve Congo à Brazzaville.</p>
-          </div>
-        </div>
-        <div class="feature-card">
-          <div class="ph"><img src="https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Ambiance de Chez Bolingo" loading="lazy"></div>
-          <div class="body">
-            <h3>Ambiance</h3>
-            <p>Midi comme soir, une salle vivante pour déjeuner, dîner ou célébrer.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+<!-- EXPÉRIENCES -->
+<section class="exps" id="experiences">
+  <div class="section-label">L'établissement</div>
+  <h2 class="section-title">Une table,<br>une <em>vue, une ambiance</em></h2>
+  <div class="exps-grid">
+    <div class="exp-card">
+      <img class="exp-img" src="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&w=700" alt="La cuisine de Chez Bolingo">
+      <div class="exp-tag">Le restaurant</div>
+      <h3 class="exp-title">Cuisine <em>généreuse</em></h3>
+      <p class="exp-desc">Poissons du Congo, viandes grillées, spécialités congolaises préparées à la commande. Prix par personne entre 4 000 et 6 000 FCFA.</p>
+      <a href="bolingo-menu.html" class="exp-link">Voir le menu →</a>
+    </div>
+    <div class="exp-card">
+      <img class="exp-img" src="https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&w=700" alt="Terrasse de Chez Bolingo">
+      <div class="exp-tag">La terrasse</div>
+      <h3 class="exp-title">Vue sur le <em>fleuve</em></h3>
+      <p class="exp-desc">Terrasse en plein air face au fleuve Congo. L'endroit idéal pour un déjeuner calme en semaine ou une soirée cocktail.</p>
+      <a href="#lounge" class="exp-link">Découvrir →</a>
+    </div>
+  </div>
+</section>
 
-    <section id="galerie">
-      <div class="section-head">
-        <span class="eyebrow">En images</span>
-        <h2>L'ambiance Chez Bolingo</h2>
-      </div>
-      <div class="gallery">
-        <a href="https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg" target="_blank" rel="noopener"><img src="https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Ambiance Chez Bolingo" loading="lazy"></a>
-        <a href="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg" target="_blank" rel="noopener"><img src="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Cuisine Chez Bolingo" loading="lazy"></a>
-        <a href="https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg" target="_blank" rel="noopener"><img src="https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Terrasse Chez Bolingo" loading="lazy"></a>
-        <a href="https://images.pexels.com/photos/2313682/pexels-photo-2313682.jpeg" target="_blank" rel="noopener"><img src="https://images.pexels.com/photos/2313682/pexels-photo-2313682.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Cocktails Chez Bolingo" loading="lazy"></a>
-      </div>
-    </section>
-
-    <section id="menu-teaser">
-      <div class="section-head">
-        <span class="eyebrow">Carte</span>
-        <h2>Quelques incontournables</h2>
-      </div>
-      <div class="menu-teaser">
-        <div class="menu-highlights">
-          <div class="dish-card"><div class="name">Capitaine braisé</div><div class="price">6 000 F</div></div>
-          <div class="dish-card"><div class="name">Brochettes</div><div class="price">4 000 F</div></div>
-          <div class="dish-card"><div class="name">Cocktail maison</div><div class="price">3 000 F</div></div>
-        </div>
-        <div class="btn-row">
-          <a class="btn btn-primary" href="bolingo-menu.html">Voir le menu complet</a>
-        </div>
-        <div class="qr-block">
-          <img src="bolingo-qr.png" alt="QR code vers le menu Chez Bolingo">
-          <div class="text"><strong>Sur place ?</strong> Scannez ce code avec votre téléphone pour consulter la carte directement à table.</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="section-head">
-        <span class="eyebrow">Nous écrire</span>
-        <h2>Contact</h2>
-      </div>
-      <div class="contact-grid">
-        <form id="contactForm">
-          <div class="field">
-            <label for="f-name">Nom</label>
-            <input id="f-name" type="text" required>
-          </div>
-          <div class="field">
-            <label for="f-phone">Téléphone / WhatsApp</label>
-            <input id="f-phone" type="tel" required>
-          </div>
-          <div class="field">
-            <label for="f-msg">Message</label>
-            <textarea id="f-msg" required placeholder="Date, heure, nombre de personnes…"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Envoyer</button>
-          <p class="confirm" id="confirmMsg">Merci — nous revenons vers vous rapidement.</p>
-        </form>
-        <dl class="contact-side">
-          <dt>Adresse</dt><dd>Corniche de Brazzaville</dd>
-          <dt>Téléphone</dt><dd>06 866 9995</dd>
-          <dt>Horaires</dt><dd>Tous les jours · 12h – 23h</dd>
-        </dl>
-      </div>
-    </section>
+<!-- MENU -->
+<section id="menu">
+  <div class="menu-header">
+    <div class="section-label">Notre carte</div>
+    <h2 class="section-title">Ce soir <em>chez Bolingo</em></h2>
+    <p class="menu-note">Prix confirmés au 06 866 9995 · Accompagnements sur demande</p>
+  </div>
+  <div class="menu-highlights">
+    <div class="menu-highlight-card">
+      <div class="plat-nom">Capitaine braisé</div>
+      <div class="plat-desc">Au feu de bois, sauce tomate</div>
+      <div class="plat-prix">5 000 F</div>
+    </div>
+    <div class="menu-highlight-card">
+      <div class="plat-nom">Poulet braisé entier</div>
+      <div class="plat-desc">Plantain frit, sauce piment</div>
+      <div class="plat-prix">5 000 F</div>
+    </div>
+    <div class="menu-highlight-card">
+      <div class="plat-nom">Saka-saka complet</div>
+      <div class="plat-desc">Feuilles de manioc, huile de palme</div>
+      <div class="plat-prix">4 000 F</div>
+    </div>
   </div>
 
-  <footer>
-    <span>© Chez Bolingo — Brazzaville · Site conçu par l'Atelier KPM</span>
-    <div class="social">
-      <a href="#" aria-label="Instagram">Instagram</a>
-      <a href="#" aria-label="Facebook">Facebook</a>
-      <a href="#" aria-label="TikTok">TikTok</a>
+  <a href="bolingo-menu.html" class="menu-cta">
+    <img src="bolingo-qr.png" alt="QR code vers la carte digitale Chez Bolingo">
+    <div class="menu-cta-text">
+      <div class="menu-cta-title">Voir la carte complète →</div>
+      <p>Tous les plats, toutes les boissons, tous les prix — sur votre téléphone. Scannez le QR code ou cliquez ici.</p>
     </div>
-  </footer>
+  </a>
+</section>
+
+<!-- GALERIE -->
+<section class="galerie" id="galerie">
+  <div class="section-label">L'ambiance</div>
+  <h2 class="section-title">Chez Bolingo,<br>c'est <em>comme ça</em></h2>
+  <div class="galerie-grid">
+    <img class="galerie-img galerie-img-tall" src="https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&w=600" alt="Ambiance Chez Bolingo">
+    <img class="galerie-img galerie-img-sq" src="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?auto=compress&w=500" alt="Cuisine Chez Bolingo">
+    <img class="galerie-img galerie-img-sq" src="https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&w=500" alt="Terrasse Chez Bolingo">
+    <img class="galerie-img galerie-img-wide" style="height:220px;" src="https://images.pexels.com/photos/2313682/pexels-photo-2313682.jpeg?auto=compress&w=900" alt="Cocktails Chez Bolingo">
+  </div>
+</section>
+
+<!-- TERRASSE LOUNGE -->
+<section class="lounge" id="lounge">
+  <div class="lounge-grid">
+    <div>
+      <div class="section-label">La terrasse</div>
+      <h2 class="section-title">Plus qu'un repas,<br>une <em>expérience.</em></h2>
+      <p class="lounge-body">La terrasse de Chez Bolingo offre une vue directe sur le fleuve Congo — un cadre rare à Brazzaville. Idéale pour un déjeuner d'affaires calme en semaine, ou une soirée entre amis le weekend.</p>
+      <div class="lounge-feats">
+        <div class="lounge-feat"><div class="lounge-feat-icon">🌊</div><div class="lounge-feat-text"><div class="lounge-feat-title">Vue sur le fleuve Congo</div>Un panorama unique au cœur de Brazzaville, signalé par nos clients comme l'atout principal.</div></div>
+        <div class="lounge-feat"><div class="lounge-feat-icon">🍹</div><div class="lounge-feat-text"><div class="lounge-feat-title">Excellents cocktails</div>Bar complet, cocktails maison, bières fraîches et jus naturels.</div></div>
+        <div class="lounge-feat"><div class="lounge-feat-icon">🎉</div><div class="lounge-feat-text"><div class="lounge-feat-title">Salle à manger privée</div>Pour vos événements — anniversaires, repas d'affaires, soirées privées.</div></div>
+      </div>
+    </div>
+    <img class="lounge-img" src="https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&w=700" alt="Terrasse Chez Bolingo vue fleuve">
+  </div>
+</section>
+
+<!-- RÉSERVATION -->
+<section class="reservation" id="reservation">
+  <div class="res-grid">
+    <div>
+      <div class="section-label">Réservation</div>
+      <h2 class="section-title">Réservez votre<br>table <em>chez Bolingo</em></h2>
+      <div class="res-infos">
+        <div class="res-info-item">
+          <div class="res-info-icon">📍</div>
+          <div><div class="res-info-label">Notre adresse</div><div class="res-info-val">Av. Simon Kimbangou, Brazzaville<br>République du Congo<br><a href="https://www.google.com/maps/search/?api=1&query=Chez+Bolingo+Brazzaville">Itinéraire sur Google Maps →</a></div></div>
+        </div>
+        <div class="res-info-item">
+          <div class="res-info-icon">🕐</div>
+          <div><div class="res-info-label">Horaires</div><div class="res-info-val">Tous les jours · 12h00 – 23h00<br>Cuisine chaude jusqu'à 22h30</div></div>
+        </div>
+        <div class="res-info-item">
+          <div class="res-info-icon">📞</div>
+          <div><div class="res-info-label">Nous appeler</div><div class="res-info-val"><a href="tel:+242068669995">06 866 9995</a><br>WhatsApp disponible</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="res-form">
+      <div class="res-form-title">Réserver une table</div>
+      <div class="res-form-sub">Confirmation sous 1 heure par appel ou WhatsApp</div>
+      <div class="form-row">
+        <div class="form-group"><label>Prénom</label><input type="text" placeholder="Jean-Marie"></div>
+        <div class="form-group"><label>Nom</label><input type="text" placeholder="Moukala"></div>
+      </div>
+      <div class="form-row full">
+        <div class="form-group"><label>Téléphone / WhatsApp</label><input type="tel" placeholder="+242 06 XXX XXXX"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Date</label><input type="date"></div>
+        <div class="form-group"><label>Heure</label>
+          <select>
+            <option value="">Choisir...</option>
+            <option>12h00</option><option>13h00</option><option>14h00</option>
+            <option>19h00</option><option>20h00</option><option>21h00</option><option>22h00</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row full">
+        <div class="form-group"><label>Nombre de personnes</label>
+          <select>
+            <option value="">Choisir...</option>
+            <option>1 personne</option><option>2 personnes</option><option>3–4 personnes</option>
+            <option>5–6 personnes</option><option>7–10 personnes</option><option>Plus de 10</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-submit" onclick="submitForm()">Confirmer ma réservation →</button>
+      <div class="form-confirm" id="confirm">✓ Demande envoyée — nous vous rappelons dans l'heure !</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Chez <em>Bolingo</em></div>
+      <p class="footer-desc">Restaurant & terrasse avec vue sur le fleuve Congo. Cuisine congolaise, cocktails et ambiance, 7 jours sur 7 à Brazzaville.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/bolingo_brazzaville/" class="social-btn">📸</a>
+        <a href="https://www.facebook.com/people/Chez-Bolingo/61561425272486/" class="social-btn">👍</a>
+        <a href="https://www.tiktok.com/@chez.bolingo" class="social-btn">🎵</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigation</div>
+      <ul class="footer-links">
+        <li><a href="#experiences">L'établissement</a></li>
+        <li><a href="bolingo-menu.html">Menu</a></li>
+        <li><a href="#lounge">La terrasse</a></li>
+        <li><a href="#reservation">Réservation</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="tel:+242068669995">06 866 9995</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=Chez+Bolingo+Brazzaville">Av. Simon Kimbangou</a></li>
+        <li><a href="#">Brazzaville, Congo</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Chez Bolingo · Tous droits réservés</span>
+    <span class="footer-kpm">Site conçu par <a href="https://bowbosh22.github.io/atelier-kpm">l'Atelier KPM</a></span>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOTTANT -->
+<a href="https://wa.me/242068669995?text=Bonjour%20Chez%20Bolingo%2C%20je%20souhaite%20r%C3%A9server%20une%20table." class="wa-btn" aria-label="Contacter Chez Bolingo sur WhatsApp">
+  <svg class="wa-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
 
 <script>
-  var form = document.getElementById('contactForm');
-  var confirmMsg = document.getElementById('confirmMsg');
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    confirmMsg.classList.add('show');
-    var whatsappText = encodeURIComponent(
-      'Bonjour, je suis ' + document.getElementById('f-name').value +
-      ' (' + document.getElementById('f-phone').value + '). ' +
-      document.getElementById('f-msg').value
-    );
-    form.dataset.whatsapp = 'https://wa.me/242068669995?text=' + whatsappText;
-  });
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+function submitForm() {
+  const confirm = document.getElementById('confirm');
+  confirm.style.display = 'block';
+  setTimeout(() => { confirm.style.display = 'none'; }, 5000);
+}
 </script>
 </body>
 </html>

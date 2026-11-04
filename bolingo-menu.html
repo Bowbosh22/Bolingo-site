@@ -3,269 +3,249 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Chez Bolingo — Carte</title>
-<meta name="description" content="La carte de Chez Bolingo, restaurant à Brazzaville : poissons, viandes, plats congolais et boissons.">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Hanken+Grotesk:wght@400;500;600&display=swap">
+<meta name="description" content="Carte digitale Chez Bolingo — menu complet, prix, Brazzaville.">
+<title>Carte digitale — Chez Bolingo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#F4EEE6;
-    --surface:#FFFFFF;
-    --text:#2A211B;
-    --text-soft:#6B5D4F;
-    --accent:#A6764E;
-    --accent-light:#C49A74;
-    --border:rgba(42,33,27,.14);
-    --border-soft:rgba(42,33,27,.08);
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:"Hanken Grotesk",system-ui,sans-serif;
-    font-size:16px;
-    line-height:1.5;
-    min-height:100vh;
-  }
-  h1,h2,h3{font-family:"Instrument Serif",Georgia,serif;font-weight:400;margin:0;}
-  img{max-width:100%;display:block;}
-  .wrap{max-width:460px;margin:0 auto;padding:0 20px 60px;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --noir:#0C0C0A;
+  --rouge:#8B1A1A;
+  --rouge-mid:#A52020;
+  --or:#C9952A;
+  --or-light:#E0B84A;
+  --creme:#F7F2EA;
+  --creme-dark:#EAE2D6;
+  --blanc:#FDFAF6;
+  --texte:#1A1208;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--blanc);color:var(--texte);min-height:100vh;}
+.screen{min-height:100vh;}
+.screen[hidden]{display:none;}
 
-  .banner{
-    position:relative;
-    height:150px;
-    background:
-      linear-gradient(180deg, rgba(20,15,10,.25) 0%, rgba(20,15,10,.65) 100%),
-      url('https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&cs=tinysrgb&w=900') center/cover no-repeat;
-    display:flex;align-items:flex-end;
-    margin-bottom:22px;
-  }
-  .banner-inner{
-    max-width:460px;margin:0 auto;width:100%;padding:0 20px 16px;
-    display:flex;align-items:flex-end;justify-content:space-between;
-    color:#F4EEE6;
-  }
-  .brand{font-family:"Instrument Serif",Georgia,serif;font-size:21px;}
-  .back-link{font-size:12.5px;color:#EDE4D8;text-decoration:none;border-bottom:1px solid rgba(244,238,230,.4);padding-bottom:1px;}
-  .back-link:hover{color:#fff;}
+/* HEADER / BANNIÈRE */
+.banner{position:relative;height:190px;overflow:hidden;display:flex;align-items:flex-end;}
+.banner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.8);}
+.banner-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,12,10,0.88) 0%,rgba(12,12,10,0.25) 70%);}
+.banner-content{position:relative;z-index:2;padding:1.25rem 1.5rem;width:100%;}
+.banner-eyebrow{font-size:0.68rem;letter-spacing:0.16em;color:var(--or-light);margin-bottom:4px;}
+.banner-title{font-family:'DM Serif Display',serif;font-size:1.65rem;color:#fff;}
+.banner-title em{font-style:italic;color:var(--or-light);}
 
-  [hidden]{display:none!important;}
+/* BACK BAR */
+.backbar{display:flex;align-items:center;gap:0.6rem;padding:0.9rem 1.25rem;border-bottom:0.5px solid var(--creme-dark);background:var(--blanc);}
+.backbar button{background:none;border:none;font-size:0.85rem;color:var(--rouge);display:flex;align-items:center;gap:6px;cursor:pointer;font-family:'DM Sans',sans-serif;padding:0;}
+.backbar .crumb{font-size:0.78rem;color:#8A7060;}
 
-  .eyebrow{
-    font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--accent);
-    margin-bottom:8px;display:block;
-  }
-  .screen h2{font-size:26px;margin-bottom:22px;}
+/* ACCUEIL — tuiles Plats / Boissons */
+.home-pad{padding:1.75rem 1.25rem 2.5rem;}
+.home-note{font-size:0.8rem;color:#8A7060;margin-bottom:1.5rem;line-height:1.6;}
+.home-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem;}
+.home-tile{background:var(--noir);border-radius:10px;padding:1.75rem 1rem;display:flex;flex-direction:column;align-items:center;gap:0.75rem;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:transform 0.15s;}
+.home-tile:active{transform:scale(0.97);}
+.home-tile svg{width:34px;height:34px;stroke:var(--or-light);fill:none;stroke-width:1.5;}
+.home-tile-label{font-family:'DM Serif Display',serif;font-size:1.15rem;color:#fff;}
+.home-tile-label em{font-style:italic;color:var(--or-light);}
+.home-tile-sub{font-size:0.7rem;color:rgba(255,255,255,0.45);}
+.home-call{margin-top:1.75rem;display:flex;gap:0.75rem;}
+.home-call a{flex:1;text-align:center;padding:0.75rem;border-radius:6px;font-size:0.8rem;text-decoration:none;font-weight:500;}
+.call-tel{background:var(--creme-dark);color:var(--rouge);}
+.call-wa{background:#25D366;color:#fff;}
 
-  .back-btn{
-    display:inline-flex;align-items:center;gap:6px;background:none;border:none;
-    color:var(--text-soft);font-family:inherit;font-size:14px;cursor:pointer;padding:0;margin-bottom:18px;
-  }
-  .back-btn:hover{color:var(--accent);}
+/* CATÉGORIES */
+.cats-pad{padding:1.5rem 1.25rem 2.5rem;}
+.cats-title{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--rouge);margin-bottom:1.25rem;}
+.cats-title em{font-style:italic;color:var(--texte);}
+.cats-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
+.cat-tile{background:var(--creme);border:0.5px solid var(--creme-dark);border-radius:10px;padding:1.4rem 0.9rem;display:flex;flex-direction:column;align-items:center;gap:0.6rem;cursor:pointer;font-family:'DM Sans',sans-serif;transition:transform 0.15s,border-color 0.15s;}
+.cat-tile:active{transform:scale(0.97);}
+.cat-tile:hover{border-color:var(--or);}
+.cat-tile svg{width:28px;height:28px;stroke:var(--rouge);fill:none;stroke-width:1.5;}
+.cat-tile-label{font-size:0.82rem;color:var(--texte);font-weight:500;}
 
-  .icon{width:26px;height:26px;flex-shrink:0;color:var(--accent);}
-  .icon-sm{width:20px;height:20px;flex-shrink:0;color:var(--accent);}
+/* LISTE DE PLATS */
+.plats-pad{padding:1.25rem 1.25rem 3rem;}
+.plats-title{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--rouge);margin-bottom:0.3rem;}
+.plats-title em{font-style:italic;color:var(--texte);}
+.plats-note{font-size:0.75rem;color:#8A7060;margin-bottom:1.25rem;}
+.plat-row{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:0.95rem 0.9rem;border-radius:6px;}
+.plat-row:nth-child(odd){background:var(--creme);}
+.plat-nom{font-size:0.92rem;color:var(--texte);}
+.plat-desc{font-size:0.75rem;color:#8A7060;margin-top:2px;line-height:1.4;}
+.plat-prix{font-family:'DM Serif Display',serif;font-size:1rem;color:var(--or);flex-shrink:0;white-space:nowrap;}
 
-  /* home tiles */
-  .home-tiles{display:flex;flex-direction:column;gap:14px;margin-top:6px;}
-  .tile{
-    display:flex;align-items:center;gap:16px;
-    border:1px solid var(--border);border-radius:6px;background:var(--surface);
-    padding:20px;cursor:pointer;font-family:inherit;text-align:left;width:100%;
-  }
-  .tile:hover{border-color:var(--accent);}
-  .tile .icon-wrap{
-    width:48px;height:48px;border-radius:50%;background:var(--bg);
-    display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  }
-  .tile .tile-text{flex:1;}
-  .tile .label{font-family:"Instrument Serif",Georgia,serif;font-size:21px;display:block;}
-  .tile .sub{font-size:12.5px;color:var(--text-soft);margin-top:3px;display:block;}
-  .tile .arrow{color:var(--accent);font-size:18px;}
-
-  /* category tiles */
-  .cat-tiles{display:flex;flex-direction:column;gap:10px;}
-  .cat-tile{
-    display:flex;align-items:center;gap:12px;
-    border:1px solid var(--border-soft);border-radius:5px;background:var(--surface);
-    padding:14px 16px;cursor:pointer;font-family:inherit;text-align:left;width:100%;font-size:15.5px;
-  }
-  .cat-tile:hover{border-color:var(--accent);}
-  .cat-tile span.cat-label{flex:1;}
-  .cat-tile .arrow{color:var(--accent);}
-
-  /* dish list */
-  .dish-list{display:flex;flex-direction:column;gap:2px;}
-  .dish{
-    display:flex;justify-content:space-between;align-items:baseline;gap:12px;
-    padding:13px 14px;border-radius:4px;
-  }
-  .dish:nth-child(odd){background:rgba(166,118,78,.05);}
-  .dish .name{font-size:15.5px;}
-  .dish .desc{font-size:12.5px;color:var(--text-soft);margin-top:2px;}
-  .dish .price{font-size:14.5px;color:var(--accent);white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:500;}
-
-  footer.page-footer{
-    text-align:center;font-size:12px;color:var(--text-soft);padding-top:30px;
-  }
+footer.menu-footer{text-align:center;padding:1.5rem 1.25rem 2.5rem;font-size:0.75rem;color:#8A7060;line-height:1.7;border-top:0.5px solid var(--creme-dark);margin-top:1rem;}
+footer.menu-footer a{color:var(--or);text-decoration:none;}
+footer.menu-footer .kpm{display:block;margin-top:0.75rem;font-size:0.68rem;color:#B8A890;}
+footer.menu-footer .kpm a{color:#B8A890;}
 </style>
 </head>
 <body>
+
+<!-- ÉCRAN ACCUEIL -->
+<div class="screen" id="screen-home">
   <div class="banner">
-    <div class="banner-inner">
-      <div class="brand">Chez Bolingo</div>
-      <a class="back-link" href="index.html">← Le site</a>
+    <img src="https://images.pexels.com/photos/3184183/pexels-photo-3184183.jpeg?auto=compress&w=900" alt="Chez Bolingo">
+    <div class="banner-overlay"></div>
+    <div class="banner-content">
+      <div class="banner-eyebrow">CARTE DIGITALE</div>
+      <div class="banner-title">Chez <em>Bolingo</em></div>
     </div>
   </div>
-
-  <div class="wrap">
-
-  <!-- HOME -->
-  <div class="screen" id="screen-home">
-    <span class="eyebrow">La carte</span>
-    <h2>Que souhaitez-vous<br>consulter ?</h2>
-    <div class="home-tiles">
-      <button class="tile" data-goto="plats">
-        <span class="icon-wrap">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2v8a2 2 0 0 0 2 2v10"/><path d="M7 2v6M10 2v6"/><path d="M17 2c-1.5 0-2.5 1.8-2.5 4.5S15.5 11 17 11v11"/></svg>
-        </span>
-        <span class="tile-text">
-          <span class="label">Plats</span>
-          <span class="sub">Poissons · Viandes · Congolais</span>
-        </span>
-        <span class="arrow">→</span>
+  <div class="home-pad">
+    <p class="home-note">Choisissez une catégorie pour voir les plats et leurs prix.</p>
+    <div class="home-grid">
+      <button class="home-tile" onclick="show('cats-plats')">
+        <svg viewBox="0 0 24 24"><path d="M7 2v8a2 2 0 0 0 2 2v10M11 2v8M15 2v8a2 2 0 0 1-2 2M18 2c-1.5 2-1.5 6 0 8s1.5 10 1.5 12" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="home-tile-label">Nos <em>plats</em></div>
+        <div class="home-tile-sub">Poissons · Viandes · Congolais</div>
       </button>
-      <button class="tile" data-goto="boissons">
-        <span class="icon-wrap">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l-1.2 15a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8L6 3Z"/><path d="M6.6 8h10.8"/></svg>
-        </span>
-        <span class="tile-text">
-          <span class="label">Boissons</span>
-          <span class="sub">Cocktails · Bières · Jus</span>
-        </span>
-        <span class="arrow">→</span>
+      <button class="home-tile" onclick="show('cats-boissons')">
+        <svg viewBox="0 0 24 24"><path d="M5 3h14l-1.5 15a2 2 0 0 1-2 1.8H8.5a2 2 0 0 1-2-1.8L5 3zM5 3l1 5h12l1-5M7 8l1.5 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="home-tile-label">Nos <em>boissons</em></div>
+        <div class="home-tile-sub">Cocktails · Bières · Jus</div>
       </button>
     </div>
-  </div>
-
-  <!-- PLATS CATEGORIES -->
-  <div class="screen" id="screen-plats" hidden>
-    <button class="back-btn" data-back="home">← Retour</button>
-    <span class="eyebrow">Plats</span>
-    <h2>Choisissez une catégorie</h2>
-    <div class="cat-tiles" style="margin-top:20px;">
-      <button class="cat-tile" data-goto="poissons">
-        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12c3-4 8-6 12-6 3 0 5 2 6 6-1 4-3 6-6 6-4 0-9-2-12-6Z"/><path d="M15 9.5h.01"/><path d="M3 12c1.5 1 2.5 2.6 2.5 4M3 12c1.5-1 2.5-2.6 2.5-4"/></svg>
-        <span class="cat-label">Poissons</span><span class="arrow">→</span>
-      </button>
-      <button class="cat-tile" data-goto="viandes">
-        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 15.5 20 20"/><path d="M8 14.5c-2.5 2.5-3 5-4.5 5.5-1-1.5 1.5-2 3.5-4.5"/><circle cx="13" cy="9" r="6.2"/></svg>
-        <span class="cat-label">Viandes</span><span class="arrow">→</span>
-      </button>
-      <button class="cat-tile" data-goto="congolais">
-        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c6-1 9-5 9-13 0 0-9 1-9 13Z"/><path d="M13 7c6 1 7 6 4 13-7-1-7-7-4-13Z"/></svg>
-        <span class="cat-label">Plats congolais</span><span class="arrow">→</span>
-      </button>
+    <div class="home-call">
+      <a class="call-tel" href="tel:+242068669995">📞 Appeler</a>
+      <a class="call-wa" href="https://wa.me/242068669995?text=Bonjour%20Chez%20Bolingo">💬 WhatsApp</a>
     </div>
   </div>
+  <footer class="menu-footer">
+    Av. Simon Kimbangou, Brazzaville · Tous les jours, 12h–23h<br>
+    Prix confirmés au <a href="tel:+242068669995">06 866 9995</a>
+    <span class="kpm">Carte conçue par <a href="https://bowbosh22.github.io/atelier-kpm">l'Atelier KPM</a></span>
+  </footer>
+</div>
 
-  <!-- BOISSONS CATEGORIES -->
-  <div class="screen" id="screen-boissons" hidden>
-    <button class="back-btn" data-back="home">← Retour</button>
-    <span class="eyebrow">Boissons</span>
-    <h2>Choisissez une catégorie</h2>
-    <div class="cat-tiles" style="margin-top:20px;">
-      <button class="cat-tile" data-goto="cocktails">
-        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16l-8 9-8-9Z"/><path d="M12 13v7"/><path d="M8 20h8"/></svg>
-        <span class="cat-label">Cocktails maison</span><span class="arrow">→</span>
+<!-- ÉCRAN CATÉGORIES : PLATS -->
+<div class="screen" id="screen-cats-plats" hidden>
+  <div class="backbar">
+    <button onclick="show('home')">← Accueil</button>
+    <span class="crumb">/ Plats</span>
+  </div>
+  <div class="cats-pad">
+    <h2 class="cats-title">Nos <em>plats</em></h2>
+    <div class="cats-grid">
+      <button class="cat-tile" onclick="show('liste-poissons')">
+        <svg viewBox="0 0 24 24"><path d="M2 12s4-6 11-6 9 6 9 6-2 6-9 6-11-6-11-6z"/><circle cx="17" cy="11" r="0.6" fill="currentColor"/></svg>
+        <div class="cat-tile-label">Poissons</div>
       </button>
-      <button class="cat-tile" data-goto="bieres">
-        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h10v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9Z"/><path d="M5 9 6 4h8l1 5"/><path d="M15 10h2.5A1.5 1.5 0 0 1 19 11.5v3A1.5 1.5 0 0 1 17.5 16H15"/></svg>
-        <span class="cat-label">Bières</span><span class="arrow">→</span>
+      <button class="cat-tile" onclick="show('liste-viandes')">
+        <svg viewBox="0 0 24 24"><path d="M15.5 8.5c2 2 2 5 0 7-2.5 2.5-6 1.5-7-1-2 0-4-1.5-4-3.5S6 7.5 8 7.5c-.5-1 0-2.5 1.5-3C11 3.5 13.5 4 15.5 8.5z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="cat-tile-label">Viandes</div>
       </button>
-      <button class="cat-tile" data-goto="jus">
-        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h8l-1 17a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1L7 3Z"/><path d="M6.6 8h9.8"/><path d="M14 2v3"/></svg>
-        <span class="cat-label">Jus naturels</span><span class="arrow">→</span>
+      <button class="cat-tile" onclick="show('liste-congolais')" style="grid-column:span 2;">
+        <svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 16 0c0 1-1 1-1 1H5s-1 0-1-1z"/><path d="M2 13h20M12 4v4M9 5.5l1.5 2.5M15 5.5 13.5 8" stroke-linecap="round"/></svg>
+        <div class="cat-tile-label">Plats congolais</div>
       </button>
     </div>
   </div>
+</div>
 
-  <!-- DISH LISTS -->
-  <div class="screen" id="screen-poissons" hidden>
-    <button class="back-btn" data-back="plats">← Retour</button>
-    <span class="eyebrow">Plats · Poissons</span>
-    <h2>Poissons</h2>
-    <div class="dish-list" style="margin-top:20px;">
-      <div class="dish"><div><div class="name">Capitaine braisé</div><div class="desc">Riz, légumes du marché</div></div><div class="price">6 000 F</div></div>
-      <div class="dish"><div><div class="name">Tilapia grillé</div><div class="desc">Riz, légumes du marché</div></div><div class="price">5 000 F</div></div>
-      <div class="dish"><div><div class="name">Crevettes sautées</div><div class="desc">Ail, piment doux</div></div><div class="price">6 000 F</div></div>
+<!-- ÉCRAN CATÉGORIES : BOISSONS -->
+<div class="screen" id="screen-cats-boissons" hidden>
+  <div class="backbar">
+    <button onclick="show('home')">← Accueil</button>
+    <span class="crumb">/ Boissons</span>
+  </div>
+  <div class="cats-pad">
+    <h2 class="cats-title">Nos <em>boissons</em></h2>
+    <div class="cats-grid">
+      <button class="cat-tile" onclick="show('liste-cocktails')">
+        <svg viewBox="0 0 24 24"><path d="M5 4h14l-7 8v8M9 20h6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="16" cy="6" r="0.6" fill="currentColor"/></svg>
+        <div class="cat-tile-label">Cocktails</div>
+      </button>
+      <button class="cat-tile" onclick="show('liste-bieres')">
+        <svg viewBox="0 0 24 24"><path d="M5 9h10v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9zM15 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3M5 9c0-3 1-5 5-5s5 2 5 5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="cat-tile-label">Bières</div>
+      </button>
+      <button class="cat-tile" onclick="show('liste-jus')" style="grid-column:span 2;">
+        <svg viewBox="0 0 24 24"><path d="M6 3h12l-1.5 16a2 2 0 0 1-2 2h-5a2 2 0 0 1-2-2L6 3zM6 3l1 6h10l1-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="cat-tile-label">Jus & sodas</div>
+      </button>
     </div>
   </div>
+</div>
 
-  <div class="screen" id="screen-viandes" hidden>
-    <button class="back-btn" data-back="plats">← Retour</button>
-    <span class="eyebrow">Plats · Viandes</span>
-    <h2>Viandes</h2>
-    <div class="dish-list" style="margin-top:20px;">
-      <div class="dish"><div><div class="name">Poulet braisé</div><div class="desc">Riz, légumes du marché</div></div><div class="price">5 000 F</div></div>
-      <div class="dish"><div><div class="name">Brochettes</div><div class="desc">Portion généreuse</div></div><div class="price">4 000 F</div></div>
-      <div class="dish"><div><div class="name">Côtelettes de porc</div><div class="desc">Riz, légumes du marché</div></div><div class="price">5 500 F</div></div>
-    </div>
+<!-- LISTES DE PLATS -->
+<div class="screen" id="screen-liste-poissons" hidden>
+  <div class="backbar"><button onclick="show('cats-plats')">← Plats</button><span class="crumb">/ Poissons</span></div>
+  <div class="plats-pad">
+    <h2 class="plats-title">Nos <em>poissons</em></h2>
+    <p class="plats-note">Accompagnements sur demande</p>
+    <div class="plat-row"><div><div class="plat-nom">Capitaine braisé</div><div class="plat-desc">Au feu de bois, sauce tomate</div></div><div class="plat-prix">5 000 F</div></div>
+    <div class="plat-row"><div><div class="plat-nom">Tilapia grillé</div><div class="plat-desc">Marinade maison, citron</div></div><div class="plat-prix">4 000 F</div></div>
+    <div class="plat-row"><div><div class="plat-nom">Poisson chat braisé</div><div class="plat-desc">Épices du chef</div></div><div class="plat-prix">4 500 F</div></div>
+    <div class="plat-row"><div><div class="plat-nom">Crevettes sautées à l'ail</div><div class="plat-desc">Riz blanc ou frites</div></div><div class="plat-prix">6 000 F</div></div>
+    <div class="plat-row"><div><div class="plat-nom">Papillote de capitaine</div><div class="plat-desc">Légumes du marché</div></div><div class="plat-prix">5 500 F</div></div>
+    <div class="plat-row"><div><div class="plat-nom">Carpe à la sauce rouge</div></div><div class="plat-prix">4 000 F</div></div>
   </div>
+</div>
 
-  <div class="screen" id="screen-congolais" hidden>
-    <button class="back-btn" data-back="plats">← Retour</button>
-    <span class="eyebrow">Plats · Congolais</span>
-    <h2>Plats congolais</h2>
-    <div class="dish-list" style="margin-top:20px;">
-      <div class="dish"><div><div class="name">Saka-saka</div><div class="desc">Feuilles de manioc, huile de palme</div></div><div class="price">4 000 F</div></div>
-      <div class="dish"><div><div class="name">Maboké</div><div class="desc">Poisson en feuille, épicé</div></div><div class="price">5 000 F</div></div>
-      <div class="dish"><div><div class="name">Fumbwa</div><div class="desc">Feuilles sauvages, arachide</div></div><div class="price">4 000 F</div></div>
-    </div>
+<div class="screen" id="screen-liste-viandes" hidden>
+  <div class="backbar"><button onclick="show('cats-plats')">← Plats</button><span class="crumb">/ Viandes</span></div>
+  <div class="plats-pad">
+    <h2 class="plats-title">Nos <em>viandes</em></h2>
+    <p class="plats-note">Accompagnements sur demande</p>
+    <div class="plat-row"><div><div class="plat-nom">Poulet braisé entier</div><div class="plat-desc">Plantain frit, sauce piment</div></div><div class="plat-prix">5 000 F</div></div>
+    <div class="plat-row"><div><div class="plat-nom">Brochettes de bœuf</div><div class="plat-desc">5 pièces, sauce maison</div></div><div class="plat-prix">3 500 F</div></div>
+    <div class="plat-row"><div><div class="plat-nom">Côtelettes de porc</div><div class="plat-desc">Grillées, accompagnement au choix</div></div><div class="plat-prix">5 000 F</div></div>
+    <div class="plat-row"><div><div class="plat-nom">Poulet yassa</div><div class="plat-desc">Oignons confits, riz</div></div><div class="plat-prix">4 500 F</div></div>
+    <div class="plat-row"><div><div class="plat-nom">Brochettes de mouton</div><div class="plat-desc">5 pièces, épices du Sahel</div></div><div class="plat-prix">4 000 F</div></div>
+    <div class="plat-row"><div><div class="plat-nom">Viande fumée maison</div></div><div class="plat-prix">4 500 F</div></div>
   </div>
+</div>
 
-  <div class="screen" id="screen-cocktails" hidden>
-    <button class="back-btn" data-back="boissons">← Retour</button>
-    <span class="eyebrow">Boissons · Cocktails</span>
-    <h2>Cocktails maison</h2>
-    <div class="dish-list" style="margin-top:20px;">
-      <div class="dish"><div><div class="name">Cocktail maison</div><div class="desc">Recette signature</div></div><div class="price">3 000 F</div></div>
-    </div>
+<div class="screen" id="screen-liste-congolais" hidden>
+  <div class="backbar"><button onclick="show('cats-plats')">← Plats</button><span class="crumb">/ Congolais</span></div>
+  <div class="plats-pad">
+    <h2 class="plats-title">Plats <em>congolais</em></h2>
+    <p class="plats-note">Accompagnements sur demande</p>
+    <div class="plat-row"><div><div class="plat-nom">Saka-saka complet</div><div class="plat-desc">Feuilles de manioc, huile de palme, viande</div></div><div class="plat-prix">4 000 F</div></div>
+    <div class="plat-row"><div><div class="plat-nom">Maboke de capitaine</div><div class="plat-desc">Cuit en feuille de bananier</div></div><div class="plat-prix">5 500 F</div></div>
+    <div class="plat-row"><div><div class="plat-nom">Ngai-ngai au porc</div><div class="plat-desc">Feuilles d'oseille, piment</div></div><div class="plat-prix">4 500 F</div></div>
+    <div class="plat-row"><div><div class="plat-nom">Fumbwa au bœuf</div><div class="plat-desc">Légumes sauvages, riz</div></div><div class="plat-prix">4 000 F</div></div>
+    <div class="plat-row"><div><div class="plat-nom">Plantain frit</div><div class="plat-desc">Accompagnement incontournable</div></div><div class="plat-prix">1 000 F</div></div>
+    <div class="plat-row"><div><div class="plat-nom">Riz blanc / Fufu</div></div><div class="plat-prix">500 F</div></div>
   </div>
+</div>
 
-  <div class="screen" id="screen-bieres" hidden>
-    <button class="back-btn" data-back="boissons">← Retour</button>
-    <span class="eyebrow">Boissons · Bières</span>
-    <h2>Bières</h2>
-    <div class="dish-list" style="margin-top:20px;">
-      <div class="dish"><div><div class="name">Bière locale</div><div class="desc">33 cl</div></div><div class="price">1 500 F</div></div>
-    </div>
+<div class="screen" id="screen-liste-cocktails" hidden>
+  <div class="backbar"><button onclick="show('cats-boissons')">← Boissons</button><span class="crumb">/ Cocktails</span></div>
+  <div class="plats-pad">
+    <h2 class="plats-title">Nos <em>cocktails</em></h2>
+    <p class="plats-note">Demandez la carte du bar sur place</p>
+    <div class="plat-row"><div><div class="plat-nom">Cocktails maison</div><div class="plat-desc">Sélection du jour</div></div><div class="plat-prix">3 000 F</div></div>
   </div>
+</div>
 
-  <div class="screen" id="screen-jus" hidden>
-    <button class="back-btn" data-back="boissons">← Retour</button>
-    <span class="eyebrow">Boissons · Jus</span>
-    <h2>Jus naturels</h2>
-    <div class="dish-list" style="margin-top:20px;">
-      <div class="dish"><div><div class="name">Jus naturel</div><div class="desc">Au choix du jour</div></div><div class="price">2 000 F</div></div>
-    </div>
+<div class="screen" id="screen-liste-bieres" hidden>
+  <div class="backbar"><button onclick="show('cats-boissons')">← Boissons</button><span class="crumb">/ Bières</span></div>
+  <div class="plats-pad">
+    <h2 class="plats-title">Nos <em>bières</em></h2>
+    <div class="plat-row"><div><div class="plat-nom">Bière Primus / Skol</div></div><div class="plat-prix">1 000 F</div></div>
   </div>
+</div>
 
-  <footer class="page-footer">Chez Bolingo — Corniche de Brazzaville · 06 866 9995</footer>
+<div class="screen" id="screen-liste-jus" hidden>
+  <div class="backbar"><button onclick="show('cats-boissons')">← Boissons</button><span class="crumb">/ Jus & sodas</span></div>
+  <div class="plats-pad">
+    <h2 class="plats-title">Jus & <em>sodas</em></h2>
+    <div class="plat-row"><div><div class="plat-nom">Jus de corossol</div><div class="plat-desc">Fraîchement pressé</div></div><div class="plat-prix">1 500 F</div></div>
+    <div class="plat-row"><div><div class="plat-nom">Jus de gingembre</div></div><div class="plat-prix">1 200 F</div></div>
+    <div class="plat-row"><div><div class="plat-nom">Eau minérale</div></div><div class="plat-prix">500 F</div></div>
+    <div class="plat-row"><div><div class="plat-nom">Sodas</div></div><div class="plat-prix">700 F</div></div>
   </div>
+</div>
 
 <script>
-  var screens = document.querySelectorAll('.screen');
-  function show(id){
-    screens.forEach(function(s){ s.hidden = (s.id !== 'screen-' + id); });
-    window.scrollTo(0,0);
-  }
-  document.querySelectorAll('[data-goto]').forEach(function(el){
-    el.addEventListener('click', function(){ show(el.getAttribute('data-goto')); });
-  });
-  document.querySelectorAll('[data-back]').forEach(function(el){
-    el.addEventListener('click', function(){ show(el.getAttribute('data-back')); });
-  });
+function show(id) {
+  document.querySelectorAll('.screen').forEach(s => s.hidden = true);
+  document.getElementById('screen-' + id).hidden = false;
+  window.scrollTo(0, 0);
+}
 </script>
 </body>
 </html>
